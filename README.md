@@ -5,7 +5,7 @@ This App will have 3 versions:
 2. Desktop interface
 3. Website interface
 
-The App have five main funcionalities:
+The App have five main functionalities:
 - add (receives user input): adds a single item to the list;
 - show: shows every item of the list;
 - edit (receives user input): edits a single item from the list;
