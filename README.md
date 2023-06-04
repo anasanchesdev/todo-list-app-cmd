@@ -1,5 +1,5 @@
 # todo-list-app
-In this app, the user will be able to add or remove items from a to-do list as their choice.
+In this app, the user will be able to add or remove items from a To-Do list as their choice.
 This App will have 3 versions:
 - Command line interface
 - Desktop interface
