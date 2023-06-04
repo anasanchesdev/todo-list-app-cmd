@@ -1,4 +1,5 @@
 # ✅ todo-list-app
+(Start: 4th June 2023)
 In this app, the user will be able to add or remove items from a To-Do list as their choice.
 This App will have 3 versions:
 1. Command line interface
