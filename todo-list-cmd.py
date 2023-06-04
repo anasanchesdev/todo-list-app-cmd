@@ -1,6 +1,4 @@
-def add(
-
-):
+def add():
     pass
 
 
