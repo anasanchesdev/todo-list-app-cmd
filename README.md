@@ -4,6 +4,7 @@ This App will have 3 versions:
 - Command line interface
 - Desktop interface
 - Website interface
+
 The App have five main funcionalities:
 - add (receives user input): adds a single item to the list
 - show: shows every item of the list
