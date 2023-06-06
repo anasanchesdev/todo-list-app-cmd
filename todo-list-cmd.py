@@ -1,17 +1,27 @@
-def add():
+def add(todo_list, action):
+    """
+    Adds one item to to-do list
+    :return:
+    """
+    new_item = action.split()[1]
+    todo_list.append(new_item)
+    return todo_list
+
+
+def show(todo_list, *args):
+    for item in todo_list:
+        print(item, '\n')
+    return todo_list
+
+
+def edit(todo_list, action):
     pass
+    return todo_list
 
 
-def show():
+def complete(todo_list, action):
     pass
-
-
-def edit():
-    pass
-
-
-def complete():
-    pass
+    return todo_list
 
 
 PROMPT_DICT = {
@@ -21,14 +31,11 @@ PROMPT_DICT = {
     'complete': complete,
 }
 
-PROMPT = 'Type add, show, edit, complete or exit:\n> '
-todo_list = []
+todos = []
 user_input = None
 
 while user_input != 'exit':
-    user_input = input(PROMPT).lower()
+    user_input = input('Type add, show, edit, complete or exit:\n> ').lower()
     for prompt in PROMPT_DICT:
-        if user_input == prompt:
-            PROMPT_DICT[prompt]()
-    # new_todo = input('TO-DO: ')
-    # todo_list.append(new_todo)
+        if user_input.split()[0] == prompt:
+            todos = PROMPT_DICT[prompt](todos, user_input)
