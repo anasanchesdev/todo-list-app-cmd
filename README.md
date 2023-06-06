@@ -1,4 +1,9 @@
-# ✅ todo-list-app
+# todo-list-app
+
+![Design sem nome (3)](https://github.com/anasanchesdev/todo-list-app/assets/135439323/7a5dda58-b6b8-4bac-b130-b9ad1d20f627)
+
+(Start: 4th June 2023)
+
 In this app, the user will be able to add or remove items from a To-Do list as their choice.
 This App will have 3 versions:
 1. Command line interface
