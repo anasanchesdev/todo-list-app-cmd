@@ -30,4 +30,5 @@ while user_input != 'exit':
                     todo_list[old_todo_index] = todo_edited
         case 'complete':
             todo_completed = input('Enter the completed to-do (type its number):')
-            
+            if todo_completed.isnumeric():
+                 todo_completed = int(todo_completed)
