@@ -9,7 +9,6 @@ def show(todos):
 
 todo_list = []
 user_input = None
-
 print('🗹 TO-DO APP 🗹')
 while user_input != 'exit':
     user_input = input('\nType add, show, edit, complete or exit:\n > ').lower().strip()
