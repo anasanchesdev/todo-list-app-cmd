@@ -1,29 +1,21 @@
 def show(todos):
     """
     Enumerates and prints items of todo_list
+    :param todos: list of to-dos
     """
     print('')
     if len(todos) == 0:
-        print('Nothing here!')
+        print('Nothing here!\n')
     for index, todo in enumerate(todos):
-        print(f'{index + 1}.', todo)
+        print(f'{index + 1}.', todo, '\n')
 
 
-def number_to_str(number):
-    """
-    Converts safely a number to string and then subtracts 1.
-    :param number: number in string
-    :return: number in integer - 1
-    """
-    if number.isnumeric():
-        number = int(number) - 1
-        return number
-
-
+ERROR_MSG = 'You must type a number. Please, try again.'
 todo_list = []
 print('🗹 TO-DO APP 🗹')
-while True:
-    user_input = input('\nType add, show, edit, complete or exit:\n > ').lower().strip()
+run = True
+while run:
+    user_input = input('Type add, show, edit, complete or exit:\n > ').lower().strip()
 
     match user_input:
         case 'add':
@@ -36,14 +28,21 @@ while True:
         case 'edit':
             show(todo_list)
             chosen_todo_index = input('Choose an item to edit (type its number):\n > ')
-            chosen_todo_index = number_to_str(chosen_todo_index)
+            if not chosen_todo_index.isnumeric():
+                print(ERROR_MSG)
+                continue
+            chosen_todo_index = int(chosen_todo_index)
             todo_edited = input('Enter the new todo:\n > ').capitalize()
-            todo_list[chosen_todo_index] = todo_edited
+            todo_list[chosen_todo_index - 1] = todo_edited
 
         case 'complete':
+            show(todo_list)
             todo_completed = input('Enter the completed to-do (type its number):\n > ')
-            todo_completed = number_to_str(todo_completed)
-            todo_list.pop(todo_completed)
+            if not todo_completed.isnumeric():
+                print(ERROR_MSG)
+                continue
+            todo_completed = int(todo_completed)
+            todo_list.pop(todo_completed - 1)
 
         case 'exit':
             break
