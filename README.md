@@ -24,24 +24,24 @@ This is the first usable and fully optimized version of the Todo List App. The f
 
 #### Demonstration:
 
-![first-demo](first-demo.png)
+![first-demo](readme/first-demo.png)
 
 If the user types "add", the program will ask for the to-do:
 
-![add-demo](add-demo.png)
+![add-demo](readme/add-demo.png)
 
 Then the user can type "show" to see the enumerated list of to-dos:
 
-![show-demo](show-demo.png)
+![show-demo](readme/show-demo.png)
 
 If the user wants to edit a to-do, they should type "edit", then the app will ask for the number that corresponds to the to-do. After that, it will ask for the new to-do and replace it:
 
-![edit-demo](edit-demo.png)
+![edit-demo](readme/edit-demo.png)
 
 If the user wants to mark a to-do as complete, they should type "complete" and give the number that corresponds to the to-do (similar to "edit"):
 
-![complete-demo](complete-demo.png)
+![complete-demo](readme/complete-demo.png)
 
 Finally, if the user wants to exit the app, they should type "exit":
 
-![exit-demo](exit.png)
+![exit-demo](readme/exit.png)
