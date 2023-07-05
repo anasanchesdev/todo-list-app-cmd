@@ -5,12 +5,13 @@ def show(todos):
     """
     print('')
     if len(todos) == 0:
-        print('Nothing here!\n')
+        print('Nothing here!')
     for index, todo in enumerate(todos):
-        print(f'{index + 1}.', todo, '\n')
+        print(f'{index + 1}.', todo)
+    print()
 
 
-ERROR_MSG = 'You must type a number. Please, try again.'
+ERROR_MSG = '\nYou must type a number. Please, try again.'
 todo_list = []
 print('🗹 TO-DO APP 🗹')
 run = True
@@ -31,9 +32,9 @@ while run:
             if not chosen_todo_index.isnumeric():
                 print(ERROR_MSG)
                 continue
-            chosen_todo_index = int(chosen_todo_index)
+            chosen_todo_index = int(chosen_todo_index) - 1
             todo_edited = input('Enter the new todo:\n > ').capitalize()
-            todo_list[chosen_todo_index - 1] = todo_edited
+            todo_list[chosen_todo_index] = todo_edited
 
         case 'complete':
             show(todo_list)
@@ -41,8 +42,8 @@ while run:
             if not todo_completed.isnumeric():
                 print(ERROR_MSG)
                 continue
-            todo_completed = int(todo_completed)
-            todo_list.pop(todo_completed - 1)
+            todo_completed = int(todo_completed) - 1
+            todo_list.pop(todo_completed)
 
         case 'exit':
             break
