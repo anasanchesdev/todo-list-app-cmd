@@ -2,6 +2,8 @@ def show(todos):
     """
     Enumerates and prints items of todo_list.
     :param todos: list of to-dos
+    :returns True, if list is empty
+    :returns False, if list is not empty
     """
     print('')
     if len(todos) == 0:
@@ -9,6 +11,7 @@ def show(todos):
         return True
     for index, todo in enumerate(todos):
         print(f'{index + 1}.', todo.strip())
+        return False
 
 
 def update_file(todos):
@@ -42,7 +45,10 @@ while run:
             show(todo_list)
 
         case 'edit':
-            show(todo_list)
+            empty_list = show(todo_list)
+            if empty_list:
+                continue
+
             chosen_todo_index = input('\nChoose an item to edit (type its number):\n > ')
 
             if not chosen_todo_index.isnumeric():
@@ -55,8 +61,8 @@ while run:
             update_file(todo_list)
 
         case 'complete':
-            empty = show(todo_list)
-            if empty:
+            empty_list = show(todo_list)
+            if empty_list:
                 continue
 
             todo_completed = input('\nEnter the completed to-do (type its number):\n > ')
