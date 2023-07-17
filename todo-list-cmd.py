@@ -11,12 +11,12 @@ def show(todos):
         return True
     for index, todo in enumerate(todos):
         print(f'{index + 1}.', todo.strip())
-        return False
+    return False
 
 
 def update_file(todos):
     """
-    Updates todos.txt file with new values of raw todo_list.
+    Updates todos.txt file with new values of todo_list.
     :param todos: list of to-dos
     """
     with open('todos.txt', 'w') as todos_file_f:
@@ -40,6 +40,7 @@ while run:
 
             todo_list.append(todo_added)
             update_file(todo_list)
+            print(f'To-do "{todo_added.strip()}" added!')
 
         case 'show':
             show(todo_list)
@@ -56,24 +57,28 @@ while run:
                 continue
 
             chosen_todo_index = int(chosen_todo_index) - 1
+            chosen_todo = todo_list[chosen_todo_index].strip()
             todo_edited = input('\nEnter the new todo:\n > ').capitalize() + '\n'
             todo_list[chosen_todo_index] = todo_edited
             update_file(todo_list)
+            print(f'"{chosen_todo}" changed to "{todo_edited.strip()}" successfully!"')
 
         case 'complete':
             empty_list = show(todo_list)
             if empty_list:
                 continue
 
-            todo_completed = input('\nEnter the completed to-do (type its number):\n > ')
+            todo_completed_index = input('\nEnter the completed to-do (type its number):\n > ')
 
-            if not todo_completed.isnumeric():
+            if not todo_completed_index.isnumeric():
                 print(ERROR_MSG)
                 continue
 
-            todo_completed = int(todo_completed) - 1
-            todo_list.pop(todo_completed)
+            todo_completed_index = int(todo_completed_index) - 1
+            todo_completed = todo_list[todo_completed_index].strip()
+            todo_list.pop(todo_completed_index)
             update_file(todo_list)
+            print(f'You completed "{todo_completed}"! Yay!!')
 
         case 'exit':
             break
