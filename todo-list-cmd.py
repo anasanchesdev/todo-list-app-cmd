@@ -23,6 +23,15 @@ def update_file(todos):
         todos_file_f.writelines(todos)
 
 
+"""
+def todo_from_input():
+    length = len(split_user_input)
+    todo = ""
+    for index in range(1, length):
+        todo += split_user_input[index] + ' '
+    return todo
+"""
+
 ERROR_MSG = '\nYou must type a number. Please, try again.'
 
 with open('todos.txt', 'r') as todos_file:  # creates todo_list based on previous todos
@@ -33,55 +42,58 @@ print('🗹 TO-DO APP 🗹')
 run = True
 while run:
     user_input = input('\nType add, show, edit, complete or exit:\n > ').lower().strip()
+    # split_user_input = user_input.split()
 
-    match user_input:
-        case 'add':
-            todo_added = input('\nEnter a todo:\n > ').capitalize() + '\n'
+    if 'add' in user_input:
+        todo_added = user_input[4:]
 
-            todo_list.append(todo_added)
-            update_file(todo_list)
-            print(f'To-do "{todo_added.strip()}" added!')
+        todo_list.append(todo_added)
+        update_file(todo_list)
+        print(f'To-do "{todo_added.strip()}" added!')
 
-        case 'show':
-            show(todo_list)
+    elif 'show' in user_input:
+        show(todo_list)
 
-        case 'edit':
-            empty_list = show(todo_list)
-            if empty_list:
-                continue
+    elif 'edit' in user_input:
+        empty_list = show(todo_list)
+        if empty_list:
+            continue
 
-            chosen_todo_index = input('\nChoose an item to edit (type its number):\n > ')
+        chosen_todo_index = input('\nChoose an item to edit (type its number):\n > ')
 
-            if not chosen_todo_index.isnumeric():
-                print(ERROR_MSG)
-                continue
+        if not chosen_todo_index.isnumeric():
+            print(ERROR_MSG)
+            continue
 
-            chosen_todo_index = int(chosen_todo_index) - 1
-            chosen_todo = todo_list[chosen_todo_index].strip()
-            todo_edited = input('\nEnter the new todo:\n > ').capitalize() + '\n'
-            todo_list[chosen_todo_index] = todo_edited
-            update_file(todo_list)
-            print(f'"{chosen_todo}" changed to "{todo_edited.strip()}" successfully!"')
+        chosen_todo_index = int(chosen_todo_index) - 1
+        # caso usuário digite um índice inválido
+        # if chosen_todo_index > len(todo_list):
+        #     print('')
+        chosen_todo = todo_list[chosen_todo_index].strip()
+        todo_edited = input('\nEnter the new todo:\n > ').capitalize() + '\n'
+        todo_list[chosen_todo_index] = todo_edited
+        update_file(todo_list)
+        print(f'"{chosen_todo}" changed to "{todo_edited.strip()}" successfully!"')
 
-        case 'complete':
-            empty_list = show(todo_list)
-            if empty_list:
-                continue
+    elif 'complete' in user_input:
+        empty_list = show(todo_list)
+        if empty_list:
+            continue
 
-            todo_completed_index = input('\nEnter the completed to-do (type its number):\n > ')
+        todo_completed_index = input('\nEnter the completed to-do (type its number):\n > ')
 
-            if not todo_completed_index.isnumeric():
-                print(ERROR_MSG)
-                continue
+        if not todo_completed_index.isnumeric():
+            print(ERROR_MSG)
+            continue
 
-            todo_completed_index = int(todo_completed_index) - 1
-            todo_completed = todo_list[todo_completed_index].strip()
-            todo_list.pop(todo_completed_index)
-            update_file(todo_list)
-            print(f'You completed "{todo_completed}"! Yay!!')
+        todo_completed_index = int(todo_completed_index) - 1
+        todo_completed = todo_list[todo_completed_index].strip()
+        todo_list.pop(todo_completed_index)
+        update_file(todo_list)
+        print(f'You completed "{todo_completed}"! Yay!!')
 
-        case 'exit':
-            break
+    elif 'exit' in user_input:
+        break
 
-        case _:
-            print(f'\n"{user_input}" is an unknown command. Please, type again.')
+    else:
+        print(f'\nThe given command is unknown. Please, try again.')
