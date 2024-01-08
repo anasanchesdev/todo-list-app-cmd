@@ -1,3 +1,6 @@
+import pipreqs
+
+
 def show(todos, display):
     """
     Enumerates and prints items of todo_list.
@@ -53,21 +56,20 @@ with open('todos.txt', 'r') as todos_file:  # creates todo_list based on previou
 
 print('🗹 TO-DO APP 🗹')
 
-run = True
-while run:
+while True:
+
     user_input = input('\nType add, show, edit, complete or exit:\n > ').lower().strip()
 
-    if 'add' in user_input:
+    if user_input[:4] == 'add ':
         todo_added = user_input[4:].capitalize() + '\n'
-
         todo_list.append(todo_added)
         update_file(todo_list)
         print(f'\nTo-do "{todo_added.strip()}" added!')
 
-    elif 'show' in user_input:
+    elif user_input[:4] == 'show':
         show(todo_list, True)
 
-    elif 'edit' in user_input:
+    elif user_input[:5] == 'edit ':
 
         edited_todo_index = index_from_todo(todo_list, user_input[5:])
         if edited_todo_index == '':
@@ -75,12 +77,12 @@ while run:
             continue
 
         edited_todo = todo_list[edited_todo_index]
-        new_todo_edit = input('\nEnter the new todo:\n > ').capitalize() + '\n'
-        todo_list[edited_todo_index] = new_todo_edit
+        new_edit_todo = input('Enter the new todo:\n > ').capitalize() + '\n'
+        todo_list[edited_todo_index] = new_edit_todo
         update_file(todo_list)
-        print(f'\n"{edited_todo.strip()}" changed to "{new_todo_edit.strip()}" successfully!"')
+        print(f'\n"{edited_todo.strip()}" changed to "{new_edit_todo.strip()}" successfully!"')
 
-    elif 'complete' in user_input:
+    elif user_input[:9] == 'complete ':
 
         completed_todo_index = index_from_todo(todo_list, user_input[9:])
         if completed_todo_index == '':
@@ -92,7 +94,7 @@ while run:
         update_file(todo_list)
         print(f'You completed "{completed_todo.strip()}"! Yay!!')
 
-    elif 'exit' in user_input:
+    elif user_input == 'exit':
         break
 
     else:
