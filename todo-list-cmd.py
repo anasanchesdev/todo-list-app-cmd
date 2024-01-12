@@ -1,25 +1,3 @@
-import pipreqs
-
-
-def show(todos, display):
-    """
-    Enumerates and prints items of todo_list.
-    :param todos: list of to-dos
-    :param display: True if items should be displayed, else False.
-    :return True, if list is empty
-    :return False, if list is not empty
-    """
-    print('')
-    if len(todos) == 0:
-        print('Nothing here!')
-        return True
-    if not display:
-        return False
-    for index, todo in enumerate(todos):
-        print(f'{index + 1}.', todo.strip())
-    return False
-
-
 def update_file(todos):
     """
     Updates todos.txt file with new values of todo_list.
@@ -29,22 +7,13 @@ def update_file(todos):
         todos_file_f.writelines(todos)
 
 
-def index_from_todo(todos, index_input):
+def index_from_todo(index_input):
     """
-    Picks the index of the to-do to be edited/completed from the user. Checks if the index is valid and if there is any
-    to-dos to be edited/completed.
-    :param todos: list of to-dos
+    Picks the index of the to-do to be edited/completed by the user.
     :param index_input: index given from the user
-    :return: False if index is invalid.
     :returns: the given index minus 1
     """
-    if show(todos, False):
-        return ''
-    if not index_input.isnumeric():
-        return ''
     todo_index = int(index_input)
-    if todo_index > len(todos) or todo_index <= 0:
-        return ''
     todo_index -= 1
     return todo_index
 
@@ -60,39 +29,48 @@ while True:
 
     user_input = input('\nType add, show, edit, complete or exit:\n > ').lower().strip()
 
-    if user_input[:4] == 'add ':
+    if user_input.startswith('add'):
+
         todo_added = user_input[4:].capitalize() + '\n'
         todo_list.append(todo_added)
         update_file(todo_list)
         print(f'\nTo-do "{todo_added.strip()}" added!')
 
-    elif user_input[:4] == 'show':
-        show(todo_list, True)
+    elif user_input.startswith('show'):
 
-    elif user_input[:5] == 'edit ':
+        print('')
+        if any(todo_list):
+            for index, todo in enumerate(todo_list):
+                print(f'{index + 1}.', todo.strip())
+        else:
+            print('Nothing here!')
 
-        edited_todo_index = index_from_todo(todo_list, user_input[5:])
-        if edited_todo_index == '':
+    elif user_input.startswith('edit'):
+
+        try:
+            edited_todo_index = index_from_todo(user_input[5:])
+            edited_todo = todo_list[edited_todo_index]
+            new_edit_todo = input('Enter the new todo:\n > ').capitalize() + '\n'
+            todo_list[edited_todo_index] = new_edit_todo
+            update_file(todo_list)
+            print(f'\n"{edited_todo.strip()}" changed to "{new_edit_todo.strip()}" successfully!"')
+
+        except TypeError or IndexError:
             print(ERROR_MSG)
             continue
 
-        edited_todo = todo_list[edited_todo_index]
-        new_edit_todo = input('Enter the new todo:\n > ').capitalize() + '\n'
-        todo_list[edited_todo_index] = new_edit_todo
-        update_file(todo_list)
-        print(f'\n"{edited_todo.strip()}" changed to "{new_edit_todo.strip()}" successfully!"')
+    elif user_input.startswith('complete'):
 
-    elif user_input[:9] == 'complete ':
+        try:
+            completed_todo_index = index_from_todo(user_input[9:])
+            completed_todo = todo_list[completed_todo_index]
+            todo_list.pop(completed_todo_index)
+            update_file(todo_list)
+            print(f'You completed "{completed_todo.strip()}"! Yay!!')
 
-        completed_todo_index = index_from_todo(todo_list, user_input[9:])
-        if completed_todo_index == '':
+        except TypeError or IndexError:
             print(ERROR_MSG)
             continue
-
-        completed_todo = todo_list[completed_todo_index]
-        todo_list.pop(completed_todo_index)
-        update_file(todo_list)
-        print(f'You completed "{completed_todo.strip()}"! Yay!!')
 
     elif user_input == 'exit':
         break
