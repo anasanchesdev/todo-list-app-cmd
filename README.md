@@ -10,7 +10,7 @@ This App will have 3 versions:
 2. Desktop interface
 3. Website interface
 
-The App have five main functionalities:
+The App have five main commands:
 - add (receives user input): adds a single item to the to-do list;
 - show: shows every item of the todo-list;
 - edit (receives user input): edits a single item from the to-do list;
