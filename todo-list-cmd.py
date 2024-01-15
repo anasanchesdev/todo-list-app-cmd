@@ -1,22 +1,4 @@
-def update_file(todos):
-    """
-    Updates todos.txt file with new values of todo_list.
-    :param todos: list of to-dos
-    """
-    with open('todos.txt', 'w') as todos_file_f:
-        todos_file_f.writelines(todos)
-
-
-def index_from_todo(index_input):
-    """
-    Picks the index of the to-do to be edited/completed by the user.
-    :param index_input: index given from the user
-    :returns: the given index minus 1
-    """
-    todo_index = int(index_input)
-    todo_index -= 1
-    return todo_index
-
+from functions import update_file, index_from_todo
 
 ERROR_MSG = "You must type a valid index or there isn't to-dos to be edited/completed. Please, try again."
 
@@ -31,7 +13,13 @@ while True:
 
     if user_input.startswith('add'):
 
-        todo_added = user_input[4:].capitalize() + '\n'
+        todo_added = user_input[4:]
+        if any(todo_added):
+            todo_added = todo_added.capitalize() + '\n'
+        else:
+            print(f'"add" cant be empty.')
+            continue
+
         todo_list.append(todo_added)
         update_file(todo_list)
         print(f'\nTo-do "{todo_added.strip()}" added!')
@@ -55,20 +43,22 @@ while True:
             update_file(todo_list)
             print(f'\n"{edited_todo.strip()}" changed to "{new_edit_todo.strip()}" successfully!"')
 
-        except TypeError or IndexError:
+        except (ValueError, TypeError, IndexError):
             print(ERROR_MSG)
             continue
 
     elif user_input.startswith('complete'):
 
         try:
-            completed_todo_index = index_from_todo(user_input[9:])
-            completed_todo = todo_list[completed_todo_index]
-            todo_list.pop(completed_todo_index)
-            update_file(todo_list)
-            print(f'You completed "{completed_todo.strip()}"! Yay!!')
+            if any(user_input):
 
-        except TypeError or IndexError:
+                completed_todo_index = index_from_todo(user_input[9:])
+                completed_todo = todo_list[completed_todo_index]
+                todo_list.pop(completed_todo_index)
+                update_file(todo_list)
+                print(f'You completed "{completed_todo.strip()}"! Yay!!')
+
+        except (ValueError, TypeError, IndexError):
             print(ERROR_MSG)
             continue
 
