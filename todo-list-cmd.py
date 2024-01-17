@@ -50,13 +50,11 @@ while True:
     elif user_input.startswith('complete'):
 
         try:
-            if any(user_input):
-
-                completed_todo_index = index_from_todo(user_input[9:])
-                completed_todo = todo_list[completed_todo_index]
-                todo_list.pop(completed_todo_index)
-                update_file(todo_list)
-                print(f'You completed "{completed_todo.strip()}"! Yay!!')
+            completed_todo_index = index_from_todo(user_input[9:])
+            completed_todo = todo_list[completed_todo_index]
+            todo_list.pop(completed_todo_index)
+            update_file(todo_list)
+            print(f'You completed "{completed_todo.strip()}"! Yay!!')
 
         except (ValueError, TypeError, IndexError):
             print(ERROR_MSG)
