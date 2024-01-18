@@ -20,7 +20,7 @@ The App have five main commands:
 
 _Last update: 12/01/2024_
 
-This is the first usable and fully optimized version of the Todo List App (command-line version). The five concepts (add, show, edit, complete, exit) can be executed simply through the command line.
+This is the first usable version of the Todo List App (command-line version). The five concepts (add, show, edit, complete, exit) can be executed simply through the command line.
 
 [//]: # (#### Demonstration:)
 
