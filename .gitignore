@@ -1,1 +1,6 @@
 tests/
+/tests/files/
+/projects/
+venv
+.idea
+readme_imgs

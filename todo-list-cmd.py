@@ -1,11 +1,13 @@
-from functions import update_file, index_from_todo
+from functions import update_file, index_from_todo, get_time
 
 ERROR_MSG = "You must type a valid index or there isn't to-dos to be edited/completed. Please, try again."
+ERRORS = (ValueError, TypeError, IndexError)
 
 with open('todos.txt', 'r') as todos_file:  # creates todo_list based on previous todos
     todo_list = todos_file.readlines()
 
 print('🗹 TO-DO APP 🗹')
+print(get_time())
 
 while True:
 
@@ -43,7 +45,7 @@ while True:
             update_file(todo_list)
             print(f'\n"{edited_todo.strip()}" changed to "{new_edit_todo.strip()}" successfully!"')
 
-        except (ValueError, TypeError, IndexError):
+        except ERRORS:
             print(ERROR_MSG)
             continue
 
@@ -56,7 +58,7 @@ while True:
             update_file(todo_list)
             print(f'You completed "{completed_todo.strip()}"! Yay!!')
 
-        except (ValueError, TypeError, IndexError):
+        except ERRORS:
             print(ERROR_MSG)
             continue
 
