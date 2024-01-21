@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://github.com/anasanchesdev/todo-list-app/assets/135439323/7a5dda58-b6b8-4bac-b130-b9ad1d20f627" />
 </p>
-(Start: 4th June 2023)
+(Start: June 4th, 2023)
 
 In this app, the user will be able to add or remove items from a To-Do list as their choice.
 This App will have 3 versions:
@@ -18,7 +18,7 @@ The App have five main commands:
 - exit: finish the program.
 ## 1. Command line interface
 
-_Last update: 12/01/2024_
+_Last update: January 12th, 2024_
 
 This is the first usable version of the Todo List App (command-line version). The five concepts (add, show, edit, complete, exit) can be executed simply through the command line.
 
