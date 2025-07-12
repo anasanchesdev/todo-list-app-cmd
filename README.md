@@ -4,17 +4,17 @@
 </p>
 (Start: June 4th, 2023)
 
-In this app, the user will be able to add or remove items from a To-Do list as their choice.
+In this app, users can add or remove items from a To-Do list as they choose.
 This App will have 3 versions:
 1. Command line interface 
 2. Desktop interface
 3. Website interface
 
-The App have five main commands:
+The App has five main commands:
 - add (receives user input): adds a single item to the to-do list;
 - show: shows every item of the todo-list;
 - edit (receives user input): edits a single item from the to-do list;
-- complete (receives user input): risks off an item from the todo-list;
+- complete (receives user input): removes an item from the todo-list;
 - exit: finish the program.
 ## 1. Command line interface
 
